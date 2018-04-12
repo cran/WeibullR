@@ -1,0 +1,49 @@
+useDynLib(WeibullR, .registration = TRUE)
+importFrom(Rcpp, evalCpp)
+importFrom("graphics", "abline", "axis", "curve", "legend", "lines",
+		 "par", "plot", "plot.default", "points", "segments",
+		 "title")
+importFrom("stats", "approxfun", "coef", "cor", "lm", "na.omit",
+		 "pexp", "plnorm", "pweibull", "qbeta", "qexp", "qlnorm",
+		 "qnorm", "quantile", "qweibull", "rweibull", "optimHess",
+		 "sd", "var", "pchisq", "qchisq", "dnorm", "dlnorm", "dweibull")
+importFrom("utils", "modifyList")
+
+
+export(
+	AbPval,
+	getCCC2,
+	hrbu,
+	FMbounds,
+	lslr,
+	getPercentilePlottingPositions,
+	getPPP,
+	LLln,
+	LLw,
+	LRbounds,
+	MLEcontour,
+	MLEln2p,
+	MLEln3p,
+	MLEw2p,
+	MLEw3p,
+	MRRln2p,
+	MRRln3p,
+	MRRw2p,
+	MRRw3p,
+	mlefit,
+	mleframe,
+	rba,
+	wblr,
+	wblr.conf,
+	wblr.fit,
+	wblrLoglike,
+	options.wblr,
+	pivotal.rr,
+	plot_contour,
+	plot.wblr,
+	contour.wblr,
+	weibayes,
+	weibayes.mle
+)
+S3method(plot, wblr) 
+S3method(contour, wblr) 
