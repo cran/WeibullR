@@ -1,4 +1,4 @@
-f9ac83c0ec6f84e0b93143b049f9898b *DESCRIPTION
+05c2c278f8be99b163ba686251619fa0 *DESCRIPTION
 2e910366dfd42f661bd84d186d8a7ebf *NAMESPACE
 d6ac8a63a5bfd52f7cf0f8bac195c839 *R/AbPval.r
 c4fe1543ca158848cc50f73ee16d6f3c *R/Aitken.r
@@ -32,6 +32,7 @@ e833c52166383ad87c2717a09e98b3c7 *R/wblr.conf.R
 b79d4b31b80a83bcb83736ff9f46a32e *R/wblrLoglike.r
 f04eb569df36b499657d454d9b7873de *R/weibayes.mle.r
 10b8290fe03d02588a662fb98ad2083a *R/weibayes.r
+569ef9e75481b003c8d8bce264812b27 *README.md
 5c992021ef68fe0cb35bc242f6014ea9 *man/AbPval.Rd
 c165493a295ba8e60ab348e557646e5f *man/FMbounds.Rd
 806b7cbf27ddc0797aa8a4d67e27e991 *man/LLln.Rd
@@ -46,7 +47,7 @@ efaa9c25358a4d2aaf2e659a984bd6af *man/MLEw3p.Rd
 5115a1eb6819d988dc9d92d3887ab1c3 *man/MRRln3p.Rd
 2e8c7d7ccd8e0b29ad04e1728e1bb2a8 *man/MRRw2p.Rd
 e7384a4d791f5f1c2d59d4251f2366f1 *man/MRRw3p.Rd
-267a44ba31a6330db179a8b513716347 *man/WeibullR-package.Rd
+df2986ee290f57c01db9908f60595a88 *man/WeibullR-package.Rd
 2b892a957aa90790131ec2c27c2b3bc1 *man/contour.wblr.Rd
 11b98925a804643f8795eca7bdf8d435 *man/getCCC2.Rd
 01b30cc8112eb2a873e4cabca11873d2 *man/getPPP.Rd
@@ -66,7 +67,7 @@ b4a626ba0756f598b9abeda5654392c5 *man/plot.wblr.Rd
 c870d9ef8f41e01f29300054aa3a3a97 *man/wblrLoglike.Rd
 2bdf2bbccc69586d74f201566986c890 *man/weibayes.Rd
 ee3f655de284467ec2136618918e3f1a *man/weibayes.mle.Rd
-6a33d15a3d302079dfb274c3f1d0def1 *src/CallgetCCC2.cpp
+b6e74d5dcaba28b4608ad2ad084aba9c *src/CallgetCCC2.cpp
 a7d7be15a747bd9cceb450efaeed03b1 *src/CallgetPvalue.cpp
 441e50d786d7813c36c802e5d19bf899 *src/LSLR.cpp
 dbd8656ea8017471e45aec75a2adf3f8 *src/MLEcontour.cpp
