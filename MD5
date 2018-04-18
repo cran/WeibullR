@@ -1,4 +1,4 @@
-a4b619980269665919035cb81b2a0046 *DESCRIPTION
+1431928f35b9f725337b3c0d17fcb4ca *DESCRIPTION
 2e910366dfd42f661bd84d186d8a7ebf *NAMESPACE
 d6ac8a63a5bfd52f7cf0f8bac195c839 *R/AbPval.r
 c4fe1543ca158848cc50f73ee16d6f3c *R/Aitken.r
@@ -67,11 +67,11 @@ c870d9ef8f41e01f29300054aa3a3a97 *man/wblrLoglike.Rd
 2bdf2bbccc69586d74f201566986c890 *man/weibayes.Rd
 ee3f655de284467ec2136618918e3f1a *man/weibayes.mle.Rd
 bb71cc91520aa887acfde716144c6b6f *src/CallgetCCC2.cpp
-7327279bf44b9d36c136f65107cb6ea4 *src/CallgetPvalue.cpp
-441e50d786d7813c36c802e5d19bf899 *src/LSLR.cpp
+8d817bef7206dc111b6ce464b1516a75 *src/CallgetPvalue.cpp
+d8aed2865c57993447546e5a8247ac6d *src/LSLR.cpp
 dbd8656ea8017471e45aec75a2adf3f8 *src/MLEcontour.cpp
 a49afa3fcc9c151e670c06dc96523b5e *src/MLEcontour.h
-fd147719c09bc4bbf8e2470be9c75f29 *src/MLEmodel.cpp
+2ca072763c9030c77e6a2ce274340821 *src/MLEmodel.cpp
 71c45de032d7531566943a2e34da7eb7 *src/MLEmodel.h
 9fe93b16692ca390f62255528269690c *src/Makevars
 2a6f9e9e044a78154d3cfda5936d6f48 *src/Makevars.win
