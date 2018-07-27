@@ -80,9 +80,21 @@ buildSingleDataLegend <- function(x,opadata,...){
     items <- c("legend","lty","lwd","pch","col")
     le  <- lapply(items,fu2,li)
     names(le) <- items
-    if(identical(label <- opadata$label,""))label <- NULL
+    if(identical(label <- opadata$label,"")){label <- NULL}
+	supported_position <- c("bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right", "center")
+	if(!any(tolower(opadata$legend.position) %in% supported_position)){
+		warning(paste0(opadata$legend.position," is not a supported legend position, bottomright applied"))
+		opa.data$legend.position<-"bottomright"
+	}
+	if(!is.numeric(opadata$legend.inset) || any(opadata$legend.inset<0) || any(opadata$legend.inset>1)) {
+		warning("legend.inset to be fractional graph width and height (0 and 1) inclusive \n
+				default c(0,0) applied.")
+		opadata$legend.inset<- c(0,0)
+	}
     le$rect <- legend(
-        "bottomright",
+		tolower(opadata$legend.position),
+#        "bottomright",
+		inset=opadata$legend.inset,
         legend=le$legend,
         title=label,
         cex = opadata$legend.text.size,
@@ -190,14 +202,24 @@ buildSingleFitLegend <- function(fit,opadata,...){
         items <- c("legend","lty","lwd","pch","col")
         le  <- lapply(items,fu2,li)
         names(le) <- items
-        if(identical(label <- opafit$label,""))label <- NULL
+        if(identical(label <- opafit$label,"")){label <- NULL}
+		supported_position <- c("bottomright", "bottom", "bottomleft", "left", "topleft", "top", "topright", "right","center")
+		if(!any(tolower(opafit$legend.position) %in% supported_position)){
+		warning(paste0(opafit$legend.position," is not a supported legend position, bottomright applied"))
+		opa.fit$legend.position<-"bottomright"
+	}
+		if(!is.numeric(opafit$legend.inset) || any(opafit$legend.inset<0) || any(opafit$legend.inset>1))  {
+			warning("legend.inset to be fractional graph width and height (0 and 1) inclusive \n default c(0,0) applied.")
+			opafit$legend.inset<- c(0,0)
+		}
+#		}		
         le$rect <- legend(
-            "bottomright",
-    #                "topright",
-            legend=le$legend,
+			tolower(opafit$legend.position),
+    #        "bottomright",
+	            legend=le$legend,
             title=label,
             cex = opafit$legend.text.size,
-    #        inset=0.1,
+            inset=opafit$legend.inset,
     #        merge = TRUE,
             plot=FALSE)$rect
         le$label <- opafit$label
