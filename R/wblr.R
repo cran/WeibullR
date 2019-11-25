@@ -180,7 +180,10 @@ getPlotData<-function(x,opa) {
 	mod2x<-cbind(mod1x[,-4],tmean=dataDF$time)
 
 	p<-getPPP(p_argx, ppos=ppos, aranks=aranks, ties=opa$ties.handler)
-
+	
+## remove any zero qty line entries
+mod2x<-mod2x[mod2x$qty>0,]
+## this test would have failed if any qty in mod2x were zero and ties had been handled
 if( nrow(mod2x)==nrow(p) )  {
 ## this is the R-efficient method when ties have been handled, 
 ## or there were no duplicates at all
@@ -249,6 +252,11 @@ outlist
 
 splitargs <- function(...){
     arg         <- list(...)
+	if(length(arg) > 0) {
+	if(class(arg[[1]])=="list")  {
+	arg<-arg[[1]]
+	}
+	}
     argnames    <- names(arg)
     parplot     <- plot_default_args()
     ret         <- list()
