@@ -19,7 +19,7 @@
 mleframe<-function(x, s=NULL, interval=NULL)  {
 ## interval dataframe validation
 	colname_error<-FALSE
-	if(class(interval)=="data.frame")  {
+	if(is(interval, "data.frame"))  {
 ## test names in first two columns
 		test_names<-names(interval)
 			if(test_names[1] !="left") {
@@ -120,7 +120,7 @@ mleframe<-function(x, s=NULL, interval=NULL)  {
 	}else{
 	## here a time-event dataframe can be evaluated, if provided as x
 	## This is the support for a time-event dataframe
-		if (class(x) == "data.frame") {
+		if (is(x, "data.frame")) {
 
 		## this test is drawn from Abrem.R
 			if(is.null(x$time) || is.null(x$event)){
@@ -164,11 +164,25 @@ mleframe<-function(x, s=NULL, interval=NULL)  {
 						fail_vec<-x$time[x$event==1]
 						# failures <- data.frame(left = f, right = f, qty = rep(1, length(f)))
 					}else{
-	## The assumption is that data input with a qty field is appropriately  consolidated
-	## But let's be sure the qty field is all integer, else future havoc could ensue
+	## Let's be sure the qty field is all integer, else future havoc could ensue
 						if(any(!is.integer(x$qty))) x$qty<-ceiling(x$qty)
 						f<-x$time[x$event==1]
 						failures <- data.frame(left = f, right = f, qty = x$qty[x$event==1])
+		# sort failure data wth order consistent with data entry						
+						if( f[1] < f[length(f)]) {NDX<-order(failures$left)			
+						}else{ NDX<-order(failures$left, decreasing=TRUE) }			
+						failures<-failures[NDX,]			
+	## Cannot assume that data input with a qty field is appropriately  consolidated								
+						if(length(unique(failures$left)) !=  nrow(failures)) {			
+							drop_rows<-NULL		
+							for(frow in nrow(failures): 2)  {		
+								if(failures[frow,1] == failures[frow-1,1]) {	
+									drop_rows<-c(drop_rows, frow)
+									failures[frow-1,3] <- failures[frow-1,3] + failures[frow,3]
+								}	
+							}		
+							failures<-failures[-drop_rows,]		
+						}			
 					}
 			}
 #			if(identical(ev_info, c("0","1"))) {
@@ -182,6 +196,21 @@ mleframe<-function(x, s=NULL, interval=NULL)  {
 					}else{
 	## The assumption is that data input with a qty field is appropriately  consolidated
 						suspensions <- data.frame(left = s, right = -1, qty = x$qty[x$event==0])
+		# sort failure data wth order consistent with data entry						
+						if( s[1] < s[length(s)]) {NDX<-order(suspensions$left)			
+						}else{ NDX<-order(suspensions$left, decreasing=TRUE) }			
+						suspensions<-suspensions[NDX,]
+	## Cannot assume that data input with a qty field is appropriately  consolidated								
+						if(length(unique(suspensions$left)) !=  nrow(suspensions)) {			
+							drop_rows<-NULL		
+							for(srow in nrow(suspensions): 2)  {		
+								if(suspensions[srow,1] == suspensions[srow-1,1]) {	
+									drop_rows<-c(drop_rows, srow)
+									suspensions[srow-1,3] <- suspensions[srow-1,3] + suspensions[srow,3]
+								}	
+							}		
+							suspensions<-suspensions[-drop_rows,]		
+						}	
 					}
 			}
 		}else {

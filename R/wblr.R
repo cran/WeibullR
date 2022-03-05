@@ -73,7 +73,7 @@ opa <- modifyList(options.wblr(), arg$opa)
 if(!missing(x)){
 	ti <- c(arg$rem$time,arg$rem$fail)
 	if(!is.null(ti)) warning("fail times are taken from first argument, time or fail arguments are ignored")
-	if (class(x) == "data.frame") {
+	if (is(x, "data.frame")) {
 		su<-c(s,arg$rem$susp)
 		if(!is.null(su)) warning("suspension times are taken from first argument dataframe, s or susp arguments are ignored")
 	}
@@ -89,7 +89,7 @@ if(!missing(x)){
 		}
 	}
 }
-if (!class(x) == "data.frame") {
+if (!is(x, "data.frame")) {
 if(!missing(s)){
 	if(!is.null(arg$rem$susp)) warning("suspension times are taken from second argument s, argument susp is ignored")
 }else{
@@ -168,12 +168,30 @@ getPlotData<-function(x,opa) {
 ## the original reason for forming the mod1x was to enable the transformed (mean) time calculation
 ## it now also removes suspensions ready for use in forming dataDF
 	mod1x<-cbind(x,mean=(x$left+x$right)/2)[x$right!=-1,]
+	
+## although getPPP will recompose the data by expanding qty and recombining					
+## the  nrow(mod2x)==nrow(p) test below will fail if raw data  includes					
+## multiple entries at same fail time while still carrying qty information
+## similar consolidation in mlefit shuold resolve this need					
+	if(length(unique(mod1x$mean)) !=  nrow(mod1x)) {				
+		drop_rows<-NULL			
+		NDX<-order(mod1x[,4], decreasing=TRUE)			
+		mod1x_sorted<-mod1x[NDX,]			
+		for(frow in nrow(mod1x_sorted): 2)  {			
+			if(mod1x_sorted[frow,4] == mod1x_sorted[frow-1,4]) {		
+				drop_rows<-c(drop_rows, frow)	
+				mod1x_sorted[frow-1,3] <- mod1x_sorted[frow-1,3] + mod1x_sorted[frow,3]	
+			}		
+		}			
+		mod1x<-mod1x_sorted[-drop_rows,]			
+	}	
+#browser()	
 	trans_time<-mod1x$mean*mult+mod1x$left
 	dataDF<-data.frame(time=trans_time, event=1, qty=mod1x$qty)
 	suspDF<-NULL
 	if(length(x[x$right==-1,][,1])>0) {
 	sx<-x[x$right==-1,]
-	suspDF<-data.frame(time=sx$left*mult, event=0, qty=sx$qty)
+	suspDF<-data.frame(time=sx$left*mult+sx$left, event=0, qty=sx$qty)
 	}
 	p_argx<-rbind(dataDF,suspDF)
 
@@ -253,7 +271,7 @@ outlist
 splitargs <- function(...){
     arg         <- list(...)
 	if(length(arg) > 0) {
-	if(class(arg[[1]])=="list")  {
+	if(is(arg[[1]], "list"))  {
 	arg<-arg[[1]]
 	}
 	}
