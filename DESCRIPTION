@@ -1,6 +1,6 @@
 Package: WeibullR
-Version: 1.1.10
-Date: 2022-3-24
+Version: 1.2.1
+Date: 2022-6-24
 Title: Weibull Analysis for Reliability Engineering
 Authors@R: c(person("David", "Silkworth", email = "djsilk@openreliability.org", role = "aut"), person("Jurgen", "Symynck", role = "aut"), person("Jacob", "Ormerod", email = "jake@openreliability.org", role = "cre"), person("OpenReliability.org", role = "cph"))
 Description: Life data analysis in the graphical tradition of Waloddi Weibull. Methods derived from Robert B. Abernethy (2008, ISBN 0-965306-3-2), Wayne Nelson (1982, ISBN: 9780471094586), William Q. Meeker and  Lois A. Escobar (1998, ISBN: 1-471-14328-6), John I. McCool, (2012, ISBN: 9781118217986).
@@ -17,6 +17,6 @@ Author: David Silkworth [aut],
 Maintainer: Jacob Ormerod <jake@openreliability.org>
 NeedsCompilation: yes
 SystemRequirements: C++11
-Packaged: 2022-03-24 16:06:05 UTC; djsil
+Packaged: 2022-06-25 16:52:08 UTC; djsil
 Repository: CRAN
-Date/Publication: 2022-03-24 16:50:02 UTC
+Date/Publication: 2022-06-25 18:20:02 UTC
